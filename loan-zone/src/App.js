@@ -10,10 +10,10 @@ import { connect } from "react-redux";
 import Bordash from './components/BorrowerDashBoard/LendersDashboard'
 
 const PrivateRoute = ({Component, isAuthenticated, ...rest}) => {
-  console.log("isAuthenticated :", isAuthenticated())
+  console.log("isAuthenticated :", isAuthenticated)
   return (
   <Route {...rest} render={props => (
-    isAuthenticated() 
+    isAuthenticated
       ? 
       (<Router><Component {...props}/></Router>)
       :
@@ -22,6 +22,7 @@ const PrivateRoute = ({Component, isAuthenticated, ...rest}) => {
 }
 
 function App(props) {
+  console.log(props)
   return (
     <Router>
     <Switch>
