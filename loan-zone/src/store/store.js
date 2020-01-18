@@ -29,7 +29,7 @@ const initialState = {
       return undefined
     }
   }
-  const persistedState = loadFromLocalStorage() || initialSstate
+  const persistedState = loadFromLocalStorage() || initialState
   
   
   
