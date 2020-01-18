@@ -12,15 +12,41 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import axios from 'axios';
 
 const useStyles = makeStyles({
-    
+    dashboard:{
+        background:'red'
+    }
 });
 
 export default function SignUp() {
     const classes = useStyles();
-    
+    const loans = [
+        {
+            amount:1000,
+            lenderName: "Akanksh",
+            lenderPhoneNumber: "1234567890",
+            rate: 5,
+            borrowdate: Date.now(),
+            duration: 12
+        },
+        {
+            amount:5000,
+            lenderName: "Akhil",
+            lenderPhoneNumber: "0987654321",
+            rate: 7,
+            borrowdate: Date.now(),
+            duration: 5
+        }
+    ];
+
+    const getLoan = (loan) => {
+        return(<Card></Card>)
+    };
    
 
     return (
-        <p>asdas</p>
+        <p>sadfsfsd</p>
+        // <div className={classes.dashboard}>
+        //     {loans.map(loan=>getLoan(loan))}
+        // </div>
     );
 }
