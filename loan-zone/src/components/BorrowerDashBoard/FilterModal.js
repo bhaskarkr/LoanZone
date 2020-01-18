@@ -55,7 +55,6 @@ export default function TransitionsModal(props) {
                     <TextField className={classes.inputField} id="outlined-error" label="Phone Number" variant="outlined" placeholder="Enter your Phone Number" /><br /><br />
                 </form>
             </div>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
           </div>
         </Fade>
       </Modal>

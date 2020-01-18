@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     card: {
         maxWidth: 755,
         maxHeight: '20%',
-        height: 200,
+        height: 220,
         minWidth: 100,
         marginLeft: '35%',
         marginTop: 200,
@@ -32,13 +32,18 @@ const useStyles = makeStyles({
         marginLeft: '75%',
         minWidth: 180,
         position: 'relative',
-        top: 10
+        right: '-20px',
+        top: '-160px'
     },
     forms:{
         marginLeft: '40%',
         marginTop: 50,
         display:'inline-block'
     },
+    ApplyLoanButton:{
+        left: '50%',
+        marginTop: '40px'
+    }
     
 });
 
@@ -51,7 +56,7 @@ export default function SignUp() {
             lenderName: "Akanksh",
             lenderPhoneNumber: "1234567890",
             rate: 5,
-            borrowdate: Date.now(),
+            borrowdate: new Date().toLocaleString(),
             duration: 12
         },
         {
@@ -59,7 +64,7 @@ export default function SignUp() {
             lenderName: "Akhil",
             lenderPhoneNumber: "0987654321",
             rate: 7,
-            borrowdate: Date.now(),
+            borrowdate: new Date().toLocaleString(),
             duration: 5
         }
     ];
@@ -74,7 +79,12 @@ export default function SignUp() {
     const getLoan = (loan) => {
         return (<Card className={classes.card} elevation='20'>
             <CardContent>
-                Amount = <TextField className={classes.inputField} id="outlined-error" label="Name" variant="outlined" value={loan.name} /><br /><br />{loan.amount}
+                <p>Lender's Name = {loan.lenderName}</p>
+                <p>Lender's Phone Number = {loan.lenderPhoneNumber}</p>
+                <p>Interest Rate = {loan.rate}</p>
+                <p>Borrow Date = {loan.borrowdate}</p>
+                <p>Amount = {loan.amount}</p>
+
             </CardContent>
             <CardActions>
                 <Button className={classes.cardButton} size="large" color="secondary" elevation="15"   >
@@ -87,8 +97,8 @@ export default function SignUp() {
 
     return (
         <div className={classes.dashboard} >
+            <Button className={classes.ApplyLoanButton} onClick={handleModalOpen}>Apply Loan</Button>
             {loans.map(loan => getLoan(loan))}
-            <Button onClick={handleModalOpen}>Apply Loan</Button>
             {modalState && <FilterModal openState={modalState} handleModalClose={handleModalClose} />}
         </div>
     );
