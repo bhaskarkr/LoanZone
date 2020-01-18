@@ -6,6 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
 import axios from 'axios';
 
 const useStyles = makeStyles({
@@ -40,6 +44,7 @@ export default function SignUp() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [dob, setDob] = useState('');
+    const [userType, setUserType] = useState('lender');
     const [done, setDone] = useState(false);
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -48,7 +53,7 @@ export default function SignUp() {
         setPan(event.target.files[0]);
     }
     const handleAadhaarChange = (event) => {
-        setAadhaar(event.target.value);
+        setAadhaar(event.target.files[0]);
     }
     const handleGstinChange = (event) => {
         setGstin(event.target.value);
@@ -62,34 +67,34 @@ export default function SignUp() {
     const handleDobChange = (event) => {
         setConfirmPassword(event.target.value);
     }
+    const handleRadioChange = (event) => {
+        setUserType(event.target.value);
+    }
     const handleSignUp = (event) => {
 
-        if(password !== confirmPassword)
-        {
+        if (password !== confirmPassword) {
             alert("password mismatch")
         }
         setDone(true);
-        let signUpPayload = {
-            name: name,
-            pan: pan,
-            aadhaar: aadhaar,
-            gstin: gstin,
-            password: password,
-            dob: dob
-        }
         var formData = new FormData();
-        formData.append('name',name);
-        formData.append('pan',pan);
-        formData.append('aadhaar',aadhaar);
-        formData.append('gstin',gstin);
-        formData.append('password',password);
-        console.log(formData.get('pan'));
-        axios.post("http://192.168.100.56:5244/register", { data: formData })
-            .then(response=>{
+        formData.append('name', name);
+        formData.append('pan', pan);
+        formData.append('aadhaar', aadhaar);
+        formData.append('gstin', gstin);
+        formData.append('userType', userType);
+        formData.append('password', password);
+        console.log(formData.get('userType'));
+        axios({
+            method: 'post',
+            url: "http://192.168.100.56:5244/register",
+            data: formData,
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+            .then(response => {
                 console.log(response);
                 setDone(false);
             })
-            .catch(err=>{
+            .catch(err => {
                 setDone(false);
                 console.log(err);
                 alert("Server Issue");
@@ -107,13 +112,17 @@ export default function SignUp() {
             <CardContent>
                 {/* {passwordMismatch} */}
                 <form className={classes.forms} noValidate autoComplete="off">
-                    <TextField className={classes.inputField} id="outlined-error" label="Name" variant="outlined" value={name} placeholder="Enter your Name" onChange={handleNameChange}  /><br /><br />
+                    <TextField className={classes.inputField} id="outlined-error" label="Name" variant="outlined" value={name} placeholder="Enter your Name" onChange={handleNameChange} /><br /><br />
                     {/* <TextField className={classes.inputField} id="outlined-error" label="DOB" variant="outlined" placeholder="Enter your Date Of Birth" onChange={handleDobChange}  /><br /><br /> */}
-                    <TextField className={classes.inputField} id="outlined-error" type="file" label="PAN"  placeholder="Enter your PAN" onChange={handlePanChange}  /><br /><br />
-                    <TextField className={classes.inputField} id="outlined-error"  type="file"label="Aadhaar"  placeholder="Enter your Aadhar" onChange={handleAadhaarChange}  /><br /><br />
-                    <TextField className={classes.inputField} id="outlined-error" label="GSTIN" variant="outlined" placeholder="Enter your GSTIN" onChange={handleGstinChange}  /><br /><br />
-                    <TextField className={classes.inputField} id="outlined-error" type="password" label="Password" variant="outlined" placeholder="Enter your Password" onChange={handlePasswordChange}  /><br /><br />
-                    <TextField className={classes.inputField} id="outlined-error" type="password" label="Confirm Password" variant="outlined" placeholder="Enter your Password Again" onChange={handleConfirmPasswordChange}  /><br /><br />
+                    <TextField className={classes.inputField} id="outlined-error" type="file" label="PAN" placeholder="Enter your PAN" onChange={handlePanChange} /><br /><br />
+                    <RadioGroup aria-label="User Type" name="userType" value={userType} onChange={handleRadioChange}>
+                        <FormControlLabel value="lender" control={<Radio />} label="Lender" />
+                        <FormControlLabel value="borrower" control={<Radio />} label="Borrower" />
+                    </RadioGroup>
+                    <TextField className={classes.inputField} id="outlined-error" type="file" label="Aadhaar" placeholder="Enter your Aadhar" onChange={handleAadhaarChange} /><br /><br />
+                    <TextField className={classes.inputField} id="outlined-error" label="GSTIN" variant="outlined" placeholder="Enter your GSTIN" onChange={handleGstinChange} /><br /><br />
+                    <TextField className={classes.inputField} id="outlined-error" type="password" label="Password" variant="outlined" placeholder="Enter your Password" onChange={handlePasswordChange} /><br /><br />
+                    <TextField className={classes.inputField} id="outlined-error" type="password" label="Confirm Password" variant="outlined" placeholder="Enter your Password Again" onChange={handleConfirmPasswordChange} /><br /><br />
                 </form>
             </CardContent>
 
