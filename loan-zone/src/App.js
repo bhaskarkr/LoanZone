@@ -6,15 +6,28 @@ import Login from './components/login'
 import Landing from './components/landing'
 import Home from './components/home'
 import Err from './components/err'
+import { connect } from "react-redux";
 
-function App() {
+const PrivateRoute = ({Component, isAuthenticated, ...rest}) => {
+  console.log("isAuthenticated :", isAuthenticated())
+  return (
+  <Route {...rest} render={props => (
+    isAuthenticated() 
+      ? 
+      (<Router><Component {...props}/></Router>)
+      :
+      (<Redirect to={{pathname: '/login', state: {from: props.location}}}/>)
+      )  }/>)
+}
+
+function App(props) {
   return (
     <Router>
     <Switch>
       <Route path="/" exact component={Landing}/>
-      <Route path="/login" component={SignUp}/>
+      <Route path="/register" component={SignUp}/>
       <Route path="/login" component={Login}/>
-      <PrivateRoute path="/home" isAuthenticated={isAuthenticated}  Component={Home}/> 
+      <PrivateRoute path="/home" isAuthenticated={props.isAuthenticated}  Component={Home}/> 
       <Route component={Err}/>
     </Switch>
   </Router>
@@ -26,5 +39,10 @@ function App() {
     // </div>}
   );
 }
-
-export default App;
+const mapStateToProps = state => ({
+  ...state
+});
+const mapDispatchToProps = dispatch => ({
+  dispatch: (action) => dispatch(action)
+});
+export default connect(mapStateToProps, mapDispatchToProps)(App);

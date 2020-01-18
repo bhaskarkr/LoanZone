@@ -4,6 +4,7 @@ import reducer from './reducer';
 
 
 const initialState = {
+    isAuthenticated: false,
     user:{
         },
     schemes: [],
@@ -29,7 +30,7 @@ const initialState = {
       return undefined
     }
   }
-  const persistedState = loadFromLocalStorage() || initialSstate
+  const persistedState = loadFromLocalStorage() || initialState
   
   
   
