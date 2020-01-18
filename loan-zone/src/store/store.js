@@ -4,7 +4,7 @@ import reducer from './reducer';
 
 
 const initialState = {
-    isAuthenticated: false,
+    isAuthenticated: true,
     user:{
         },
     schemes: [],

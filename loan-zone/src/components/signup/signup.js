@@ -17,6 +17,7 @@ const useStyles = makeStyles({
         maxHeight: '80%',
         marginLeft: '35%',
         marginTop: 200,
+        marginTop: 100,
         background: 'white',
     },
     media: {
@@ -28,9 +29,13 @@ const useStyles = makeStyles({
     },
     inputField: {
         width: '80%',
-        left:'10%'
+        left:'10%',
+        width: '80%'
+    },
+    forms:{
+        width: '100%',
+        display:'inline-block'
     }
-
 });
 
 export default function SignUp() {
@@ -111,7 +116,7 @@ export default function SignUp() {
                 image="https://www.societegenerale.com/sites/default/files/styles/newsroom_grille/public/logo-societe-generale11_12.jpg?itok=HAPSB8u1"
                 title="Company"
             />
-            <CardContent>
+            <CardContent style={{textAlign:'center'}}>
                 {/* {passwordMismatch} */}
                 <form className={classes.forms} noValidate autoComplete="off">
                     <TextField className={classes.inputField} id="outlined-error" label="Name" variant="outlined" value={name} placeholder="Enter your Name" onChange={handleNameChange} /><br /><br />

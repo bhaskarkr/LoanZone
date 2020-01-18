@@ -7,6 +7,7 @@ import Landing from './components/landing'
 import Home from './components/home'
 import Err from './components/err'
 import { connect } from "react-redux";
+import Bordash from './components/BorrowerDashBoard/LendersDashboard'
 
 const PrivateRoute = ({Component, isAuthenticated, ...rest}) => {
   console.log("isAuthenticated :", isAuthenticated())
@@ -27,7 +28,7 @@ function App(props) {
       <Route path="/" exact component={Landing}/>
       <Route path="/register" component={SignUp}/>
       <Route path="/login" component={Login}/>
-      <PrivateRoute path="/home" isAuthenticated={props.isAuthenticated}  Component={Home}/> 
+      <PrivateRoute path="/bordash" isAuthenticated={props.isAuthenticated}  Component={Bordash}/> 
       <Route component={Err}/>
     </Switch>
   </Router>
