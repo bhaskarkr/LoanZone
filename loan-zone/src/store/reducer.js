@@ -1,4 +1,5 @@
 const initialState = {
+    isAuthenticated: false,
     user:{
         },
     schemes: [],
