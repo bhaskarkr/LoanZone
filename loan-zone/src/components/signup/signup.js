@@ -120,7 +120,7 @@ export default function SignUp() {
                 {/* {passwordMismatch} */}
                 <form className={classes.forms} noValidate autoComplete="off">
                     <TextField className={classes.inputField} id="outlined-error" label="Name" variant="outlined" value={name} placeholder="Enter your Name" onChange={handleNameChange} /><br /><br />
-                    <TextField className={classes.inputField} id="outlined-error" label="Phone Number" variant="outlined" placeholder="Enter your Phone Number" onChange={handlePhoneNumberChange} /><br /><br />
+                    <TextField className={classes.inputField} id="outlined-error" label="Phone Number" variant="outlined" value={phoneNumber} placeholder="Enter your Phone Number" onChange={handlePhoneNumberChange} /><br /><br />
                     {/* <TextField className={classes.inputField} id="outlined-error" label="DOB" variant="outlined" placeholder="Enter your Date Of Birth" onChange={handleDobChange}  /><br /><br /> */}
                     <TextField className={classes.inputField} id="outlined-error" type="file" label="PAN" placeholder="Enter your PAN" onChange={handlePanChange} /><br /><br />
                     <RadioGroup className={classes.inputField} aria-label="User Type" name="userType" value={userType} onChange={handleRadioChange}>
@@ -128,9 +128,9 @@ export default function SignUp() {
                         <FormControlLabel value="borrower" control={<Radio />} label="Borrower" />
                     </RadioGroup>
                     <TextField className={classes.inputField} id="outlined-error" type="file" label="Aadhaar" placeholder="Enter your Aadhar" onChange={handleAadhaarChange} /><br /><br />
-                    <TextField className={classes.inputField} id="outlined-error" label="GSTIN" variant="outlined" placeholder="Enter your GSTIN" onChange={handleGstinChange} /><br /><br />
-                    <TextField className={classes.inputField} id="outlined-error" type="password" label="Password" variant="outlined" placeholder="Enter your Password" onChange={handlePasswordChange} /><br /><br />
-                    <TextField className={classes.inputField} id="outlined-error" type="password" label="Confirm Password" variant="outlined" placeholder="Enter your Password Again" onChange={handleConfirmPasswordChange} /><br /><br />
+                    <TextField className={classes.inputField} id="outlined-error" label="GSTIN" value={gstin} variant="outlined" placeholder="Enter your GSTIN" onChange={handleGstinChange} /><br /><br />
+                    <TextField className={classes.inputField} id="outlined-error" type="password" value={password} label="Password" variant="outlined" placeholder="Enter your Password" onChange={handlePasswordChange} /><br /><br />
+                    <TextField className={classes.inputField} id="outlined-error" type="password" value={confirmPassword} label="Confirm Password" variant="outlined" placeholder="Enter your Password Again" onChange={handleConfirmPasswordChange} /><br /><br />
                 </form>
             </CardContent>
 
