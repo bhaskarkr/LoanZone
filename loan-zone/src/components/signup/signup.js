@@ -13,23 +13,22 @@ import axios from 'axios';
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 445,
+        maxWidth: 555,
         maxHeight: '80%',
-        marginLeft: '40%',
+        marginLeft: '35%',
         marginTop: 200,
         background: 'white',
     },
     media: {
-        height: 100,
+        height: 120,
     },
     cardButton: {
-        marginLeft: '25%',
-        border: 10,
-        borderWidth: 3,
+        marginLeft: '32%',
         minWidth: 180
     },
     inputField: {
-        width: '80%'
+        width: '80%',
+        left:'10%'
     }
 
 });
@@ -42,6 +41,7 @@ export default function SignUp() {
     const [gstin, setGstin] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [dob, setDob] = useState('');
     const [userType, setUserType] = useState('lender');
     const [done, setDone] = useState(false);
@@ -68,6 +68,9 @@ export default function SignUp() {
     }
     const handleRadioChange = (event) => {
         setUserType(event.target.value);
+    }
+    const handlePhoneNumberChange = (event) => {
+        setPhoneNumber(event.target.value);
     }
     const handleSignUp = (event) => {
 
@@ -112,9 +115,10 @@ export default function SignUp() {
                 {/* {passwordMismatch} */}
                 <form className={classes.forms} noValidate autoComplete="off">
                     <TextField className={classes.inputField} id="outlined-error" label="Name" variant="outlined" value={name} placeholder="Enter your Name" onChange={handleNameChange} /><br /><br />
+                    <TextField className={classes.inputField} id="outlined-error" label="Phone Number" variant="outlined" placeholder="Enter your Phone Number" onChange={handlePhoneNumberChange} /><br /><br />
                     {/* <TextField className={classes.inputField} id="outlined-error" label="DOB" variant="outlined" placeholder="Enter your Date Of Birth" onChange={handleDobChange}  /><br /><br /> */}
                     <TextField className={classes.inputField} id="outlined-error" type="file" label="PAN" placeholder="Enter your PAN" onChange={handlePanChange} /><br /><br />
-                    <RadioGroup aria-label="User Type" name="userType" value={userType} onChange={handleRadioChange}>
+                    <RadioGroup className={classes.inputField} aria-label="User Type" name="userType" value={userType} onChange={handleRadioChange}>
                         <FormControlLabel value="lender" control={<Radio />} label="Lender" />
                         <FormControlLabel value="borrower" control={<Radio />} label="Borrower" />
                     </RadioGroup>
